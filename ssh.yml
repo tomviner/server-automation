@@ -1,12 +1,11 @@
 ---
 - hosts: all
   tasks:
+    # copy public key?
     - name: disable root ssh with password
-    # copy public?
       lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin " line="PermitRootLogin without-password"
       notify:
       - restart sshd
   handlers:
     - name: restart sshd
       service: name=ssh state=restarted
-

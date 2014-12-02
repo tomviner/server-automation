@@ -3,12 +3,7 @@
   tasks:
     - name: system deps
       apt: name={{ item }} state=installed
-      with_items:
-        - git
-        - python
-        - python-dev
-        - python-pip
-        - nginx
+      apt: name=nginx state=installed
 # add user
 # useradd -m -s /bin/bash -p projadm projadm
     - name: add web user
@@ -29,5 +24,3 @@
   handlers:
     - name: restart nginx
       service: name=nginx state=restarted
-
-

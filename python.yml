@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: system deps
+      apt: name={{ item }} state=installed
+      with_items:
+        - git
+        - python
+        - python-dev
+        - python-pip
