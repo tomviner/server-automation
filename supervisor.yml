@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+    - name: system deps
+      apt: name=supervisor state=installed
+    - name: python deps
+      pip: name=gunicorn state=present
+# supervisor
+# - new conf
+    - name: supervisor conf
+      template: src=supervisor.txt dest=/etc/supervisor/conf.d/website.conf
+# deploy site
+    - name: deploy basic webapp
+      template: src=website.py dest=/home/projadm/www/{{ domain }}/
+# - restart supervisor
+      notify:
+          - restart supervisor
+  handlers:
+    - name: restart supervisor
+      service: name=supervisor state=restarted

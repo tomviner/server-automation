@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+    - name: system deps
+      apt: name={{ item }} state=installed
+      with_items:
+        - git
+        - python
+        - python-dev
+        - python-pip
+        - nginx
+# add user
+# useradd -m -s /bin/bash -p projadm projadm
+    - name: add web user
+      user: name=projadm group=projadm createhome=yes shell=/bin/bash
+# nginx
+# - new conf
+    - name: nginx conf
+      template: src=nginx.txt dest=/etc/nginx/sites-available/website
+# - sym link in
+    - name: symlink new conf
+      file: src=/etc/nginx/sites-available/website dest=/etc/nginx/sites-enabled/website state=link
+# - remove default sym link
+    - name: remove default symlink nginx conf
+      file: path=/etc/nginx/sites-enabled/default state=absent
+# - restart nginx
+      notify:
+          - restart nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+

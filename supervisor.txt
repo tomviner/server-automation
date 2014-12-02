@@ -1,0 +1,10 @@
+[program:website]
+directory=/home/projadm/www/{{ domain }}/
+# command=gunicorn main:application -c /path/to/gunicorn.conf.py
+command=gunicorn website:application -b 0.0.0.0:8000
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/website.log
+redirect_stderr=true
+setuid=projadm
+user=projadm
