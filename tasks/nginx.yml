@@ -13,7 +13,7 @@
 # nginx
 # - new conf
     - name: nginx conf
-      template: src=nginx.txt dest=/etc/nginx/sites-available/website
+      template: src=../templates/nginx.txt dest=/etc/nginx/sites-available/website
 # - sym link in
     - name: symlink new conf
       file: src=/etc/nginx/sites-available/website dest=/etc/nginx/sites-enabled/website state=link

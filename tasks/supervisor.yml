@@ -8,12 +8,12 @@
 # supervisor
 # - new conf
     - name: supervisor conf
-      template: src=supervisor.txt dest=/etc/supervisor/conf.d/website.conf
+      template: src=../templates/supervisor.txt dest=/etc/supervisor/conf.d/website.conf
 # deploy site
     - name: deploy basic webapp
       file: path=/home/projadm/www/{{ domain }}/ state=directory
     - name: deploy basic webapp
-      template: src=website.py dest=/home/projadm/www/{{ domain }}/
+      template: src=../website/website.py dest=/home/projadm/www/{{ domain }}/
 # - restart supervisor
       notify:
           - restart supervisor
