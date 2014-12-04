@@ -6,6 +6,8 @@
       apt: name=nginx state=installed
 # add user
 # useradd -m -s /bin/bash -p projadm projadm
+    - name: add web group
+      group: name=projadm state=present
     - name: add web user
       user: name=projadm group=projadm createhome=yes shell=/bin/bash
 # nginx
