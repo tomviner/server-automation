@@ -3,3 +3,4 @@
 - include: tasks/python.yml
 - include: tasks/nginx.yml
 - include: tasks/supervisor.yml
+- include: tasks/database.yml

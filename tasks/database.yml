@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: system deps
+      apt: name={{ item }} state=installed
+      with_items:
+        - postgresql-9.4
+        - postgresql-server-dev-9.4
+        - postgresql-contrib-9.4
