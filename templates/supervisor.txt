@@ -1,7 +1,8 @@
 [program:website]
-directory=/home/projadm/www/{{ domain }}/
+directory=/home/projadm/www/{{ domain }}/github-hook-collector/src/github_hook_collector/
 # command=gunicorn main:application -c /path/to/gunicorn.conf.py
-command=gunicorn website:application -b 0.0.0.0:8000
+# command=gunicorn website:application -b 0.0.0.0:8000
+command=gunicorn wsgi:application -b 0.0.0.0:8000
 autostart=true
 autorestart=true
 stdout_logfile=/var/log/supervisor/website.log

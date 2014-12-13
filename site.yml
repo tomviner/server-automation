@@ -2,5 +2,6 @@
 - include: tasks/ssh.yml
 - include: tasks/python.yml
 - include: tasks/nginx.yml
-- include: tasks/supervisor.yml
 - include: tasks/database.yml
+- include: tasks/deploy.yml
+- include: tasks/supervisor.yml
