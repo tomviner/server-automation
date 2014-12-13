@@ -6,7 +6,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :public_network, bridge: 'wlan0'
   config.vm.network :private_network, ip:"10.0.0.100"
 
-  config.vm.synced_folder "./website", "/home/projadm/www/10.0.0.100"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "./website", "/home/projadm/www/10.0.0.100", disabled: true
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"
