@@ -19,4 +19,4 @@
           - restart supervisor
   handlers:
     - name: restart supervisor
-      service: name=supervisor state=restarted
+      supervisorctl: name=website state=restarted
