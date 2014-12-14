@@ -8,6 +8,8 @@
            depth=1
            accept_hostkey=yes
     - name: install local django
-      pip: name=/home/projadm/www/{{ domain }}/github-hook-collector/django state=present
+      pip: name=/home/projadm/www/{{ domain }}/github-hook-collector/django
+        state=present extra_args='-e'
     - name: install code
-      pip: name=/home/projadm/www/{{ domain }}/github-hook-collector/ state=present
+      pip: name=/home/projadm/www/{{ domain }}/github-hook-collector/
+        state=present extra_args='-e'
