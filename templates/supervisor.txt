@@ -1,3 +1,6 @@
+[supervisord]
+logfile = /home/projadm/www/{{ domain }}/supervisord.log
+
 [program:website]
 directory=/home/projadm/www/{{ domain }}/github-hook-collector/src/github_hook_collector/
 # command=gunicorn main:application -c /path/to/gunicorn.conf.py
@@ -5,7 +8,7 @@ directory=/home/projadm/www/{{ domain }}/github-hook-collector/src/github_hook_c
 command=gunicorn wsgi:application -b 0.0.0.0:8000
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/supervisor/website.log
+stdout_logfile=/home/projadm/www/{{ domain }}/website.log
 redirect_stderr=true
 setuid=projadm
 user=projadm

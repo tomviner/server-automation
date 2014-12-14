@@ -10,8 +10,8 @@
     - name: supervisor conf
       template: src=../templates/supervisor.txt dest=/etc/supervisor/conf.d/website.conf
 # deploy site
-    - name: deploy basic webapp
-      file: path=/home/projadm/www/{{ domain }}/ state=directory
+    - name: create webapp directory
+      file: path=/home/projadm/www/{{ domain }}/ state=directory owner=projadm
     - name: deploy basic webapp
       template: src=../website/website.py dest=/home/projadm/www/{{ domain }}/
 # - restart supervisor
