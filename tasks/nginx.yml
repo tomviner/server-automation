@@ -14,15 +14,17 @@
 # - new conf
     - name: nginx conf
       template: src=../templates/nginx.txt dest=/etc/nginx/sites-available/website
+      notify:
+          - reload nginx
 # - sym link in
     - name: symlink new conf
       file: src=/etc/nginx/sites-available/website dest=/etc/nginx/sites-enabled/website state=link
 # - remove default sym link
     - name: remove default symlink nginx conf
       file: path=/etc/nginx/sites-enabled/default state=absent
-# - restart nginx
+# - reload nginx
       notify:
-          - restart nginx
+          - reload nginx
   handlers:
-    - name: restart nginx
-      service: name=nginx state=restarted
+    - name: reload nginx
+      service: name=nginx state=reloaded

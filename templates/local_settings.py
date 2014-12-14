@@ -15,6 +15,7 @@ DATABASES = {
         # https://help.ubuntu.com/community/PostgreSQL#Basic_Server_Setup
         # sudo -u postgres psql postgres
         # \password postgres
+        'HOST':'localhost',
         'USER': 'projadm',
         'PASSWORD': 'qwerty',
         # createdb github_hook_collector
