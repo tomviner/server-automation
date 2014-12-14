@@ -13,3 +13,7 @@
     - name: install code
       pip: name=/home/projadm/www/{{ domain }}/github-hook-collector/
         state=present extra_args='-e'
+
+    - name: django settings
+      template: src=../templates/local_settings.py
+        dest=/home/projadm/www/{{ domain }}/github-hook-collector/src/github_hook_collector/local_settings.py

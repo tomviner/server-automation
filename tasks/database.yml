@@ -1,9 +1,31 @@
 ---
 - hosts: all
   tasks:
+    - name: ensure a locale exists
+      locale_gen: name=en_GB.UTF-8 state=present
+
     - name: system deps
       apt: name={{ item }} state=installed
       with_items:
         - postgresql-9.4
         - postgresql-server-dev-9.4
         - postgresql-contrib-9.4
+        - python-psycopg2
+
+    # - name: install psycopg2
+    #   pip: name=psycopg2 state=present
+
+    - name: create db
+      sudo: yes
+      sudo_user: postgres
+      postgresql_db: name=github_hook_collector
+
+    - name: create user
+      sudo: yes
+      sudo_user: postgres
+      postgresql_user: db=github_hook_collector
+        name=projadm password=qwerty
+        role_attr_flags=CREATEDB,LOGIN
+
+    # Done manually:
+    # pg_createcluster 9.4 main --start
