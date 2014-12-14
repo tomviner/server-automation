@@ -1,0 +1,12 @@
+---
+- hosts: all
+  connection: local
+  vars:
+    domain: "10.0.0.100"
+  tasks:
+    - name: ensure var is in inventory file
+      lineinfile:
+        dest="{{ cwd }}/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory"
+        regexp='^default ansible_ssh_host=127.0.0.1 ansible_ssh_port=(\d+)$'
+        line='default ansible_ssh_host=127.0.0.1 ansible_ssh_port=\1 domain={{ domain }}'
+        backrefs=yes
